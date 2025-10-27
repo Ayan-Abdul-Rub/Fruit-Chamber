@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Meet the Developer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+      background: radial-gradient(circle at 60% 40%, #e3f2fd 0%, #fff 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .dev-header {
+      margin-top: 38px;
+      font-size: 2.7rem;
+      font-weight: 900;
+      color: #1565c0;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 12px #90caf9;
+      text-align: center;
+      animation: fadeInDown 1s;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-40px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .back-btn-outer {
+      margin-top: 28px;
+      margin-bottom: 28px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .back-btn {
+      background: linear-gradient(90deg, #1976d2 60%, #43a047 100%);
+      color: #fff;
+      padding: 12px 32px;
+      border: none;
+      border-radius: 12px;
+      font-size: 19px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(33,150,243,0.10);
+      transition: background 0.2s, transform 0.2s;
+      letter-spacing: 1px;
+    }
+    .back-btn:hover {
+      background: linear-gradient(90deg, #1565c0 60%, #388e3c 100%);
+      transform: scale(1.05);
+    }
+    .dev-card {
+      background: linear-gradient(120deg, #fff 60%, #e3f2fd 100%);
+      border-radius: 28px;
+      box-shadow: 0 8px 32px rgba(33,150,243,0.13), 0 2px 8px rgba(33,150,243,0.08);
+      padding: 38px 34px 28px 34px;
+      max-width: 480px;
+      width: 96%;
+      text-align: center;
+      position: relative;
+      animation: fadeIn 1.2s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95);}
+      to { opacity: 1; transform: scale(1);}
+    }
+    .dev-photo {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 6px solid #43a047;
+      box-shadow: 0 4px 24px #81c784;
+      margin-bottom: 18px;
+      background: #e0e0e0;
+      transition: box-shadow 0.2s, transform 0.3s;
+      cursor: pointer;
+    }
+    .dev-photo.enlarged {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 400px;
+      height: 400px;
+      z-index: 9999;
+      transform: translate(-50%, -50%) scale(1.1);
+      box-shadow: 0 8px 40px #388e3c, 0 0 0 9999px rgba(0,0,0,0.5);
+      background: #fff;
+    }
+    .dev-name {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1976d2;
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #e3f2fd;
+    }
+    .dev-role {
+      font-size: 1.1rem;
+      color: #388e3c;
+      margin-bottom: 18px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .dev-bio {
+      font-size: 1rem;
+      color: #444;
+      margin-bottom: 22px;
+      line-height: 1.7;
+      background: linear-gradient(90deg, #e3f2fd 60%, #fff 100%);
+      border-radius: 10px;
+      padding: 12px 10px;
+      box-shadow: 0 2px 8px #e3f2fd;
+    }
+    .dev-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 18px;
+      margin-bottom: 18px;
+      margin-top: 10px;
+    }
+    .dev-info-item {
+      background: #f5f7fa;
+      border-radius: 10px;
+      padding: 10px 8px;
+      font-size: 15px;
+      color: #1976d2;
+      font-weight: 600;
+      box-shadow: 0 2px 8px #e3f2fd;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+    .dev-info-item span {
+      color: #222;
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+    }
+    .dev-projects {
+      margin-top: 18px;
+      background: linear-gradient(90deg, #e3f2fd 60%, #fff 100%);
+      border-radius: 14px;
+      box-shadow: 0 2px 8px #e3f2fd;
+      padding: 16px 12px;
+      text-align: left;
+    }
+    .dev-projects-title {
+      color: #388e3c;
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+    .dev-projects-list {
+      margin: 0;
+      padding: 0 0 0 18px;
+      list-style: disc;
+      color: #1976d2;
+      font-size: 15px;
+      font-weight: 600;
+    }
+    @media only screen and (max-width: 600px) {
+      .dev-header {
+        font-size: 1.5rem;
+        margin-top: 18px;
+      }
+      .back-btn-outer {
+        margin-top: 16px;
+        margin-bottom: 16px;
+      }
+      .back-btn {
+        font-size: 15px;
+        padding: 8px 18px;
+      }
+      .dev-card {
+        padding: 18px 6px 18px 6px;
+        margin-top: 0;
+        max-width: 98vw;
+      }
+      .dev-photo {
+        width: 120px;
+        height: 120px;
+      }
+      .dev-photo.enlarged {
+        width: 90vw;
+        height: 90vw;
+        min-width: 220px;
+        min-height: 220px;
+      }
+      .dev-name {
+        font-size: 1.2rem;
+      }
+      .dev-info {
+        grid-template-columns: 1fr;
+        gap: 8px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="dev-header">Meet the Developer</div>
+  <div class="back-btn-outer">
+  <button class="back-btn" onclick="window.location.href='index.html'">← Back</button></div>
+  <div class="dev-card">
+    <img src="/uploads/ayan.jpg" alt="Developer Photo" class="dev-photo" id="devPhoto">
+    <div class="dev-name">Ayan Abdul Rub</div>
+    <div class="dev-role">App & Web Developer</div>
+    <div class="dev-bio">
+      Passionate about building scalable, user-friendly applications.<br>
+      Experienced in Java, Kotlin, Xml, Jatpack Compose and modern tools.<br>
+      Always learning, always creating.
+    </div>
+    <div class="dev-info">
+      <div class="dev-info-item">Email: <span>abdul.4yan@gmail. com</span></div>
+      <div class="dev-info-item">Languages: <span>Java, Kotlin, Xml, Jatpack Compose</span></div>
+      <div class="dev-info-item">Tools: <span>Android Studio</span></div>
+      <div class="dev-info-item">Experience: <span>1+ years</span></div>
+      <div class="dev-info-item">Location: <span>Budaun, India</span></div>
+    </div>
+    <div class="dev-projects">
+      <div class="dev-projects-title">Projects Includes:</div>
+      <ul class="dev-projects-list">
+        <li>Cold Storage Manager</li>
+        <li>Deshboard System</li>
+        <li>Inventory Tracker</li>
+        <li>Billing System</li>
+        <li>Notification System</li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    // Photo enlarge on click
+    const photo = document.getElementById('devPhoto');
+    photo.addEventListener('click', function() {
+      photo.classList.toggle('enlarged');
+    });
+    // Close enlarged photo on outside click
+    document.addEventListener('click', function(e) {
+      if (photo.classList.contains('enlarged') && e.target !== photo) {
+        photo.classList.remove('enlarged');
+      }
+    });
+     </script>
+</body>
+</html>

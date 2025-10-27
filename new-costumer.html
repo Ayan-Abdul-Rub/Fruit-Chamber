@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>New Customer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #e0f7fa 0%, #f8bbd0 100%);
+      min-height: 100vh;
+    }
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #1976d2;
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 0 0 16px 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .top-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: 1px;
+    }
+    .notif-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      padding: 0;
+      position: relative;
+    }
+    .notif-btn svg {
+      width: 28px;
+      height: 28px;
+      fill: #fff;
+      transition: fill 0.2s;
+    }
+    .notif-btn:hover svg {
+      fill: #ffd600;
+    }
+    .container {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+      margin: 32px auto 0 auto;
+      padding: 32px 18px;
+      max-width: 400px;
+      text-align: center;
+    }
+    h2 {
+      font-size: 1.7rem;
+      color: #1976d2;
+      margin-bottom: 22px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      font-family: 'Poppins', sans-serif;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    label {
+      font-weight: 500;
+      color: #333;
+      text-align: left;
+      margin-bottom: 4px;
+      font-family: 'Poppins', sans-serif;
+    }
+    input[type="text"], input[type="file"] {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      font-family: 'Poppins', sans-serif;
+    }
+    .button {
+      background-color: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 17px;
+      padding: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(33,150,243,0.08);
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+    .button:hover {
+      background-color: #1565c0;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 16px;
+      color: #1976d2;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+  <script>
+    function showNotification() {
+      alert('No new notifications!');
+    }
+    // Restrict phone input to 10 digits only
+    document.addEventListener('DOMContentLoaded', function() {
+      var phoneInput = document.getElementById('phone');
+      phoneInput.addEventListener('input', function() {
+        this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="top-bar">
+    <span class="top-title">New Customer</span>
+    <button class="notif-btn" onclick="showNotification()" aria-label="Notifications">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 22c1.1 0 2-.9 2-2h-4a2 2 0 002 2zm6-6V11c0-3.07-1.63-5.64-4.5-6.32V4a1.5 1.5 0 10-3 0v.68C7.63 5.36 6 7.92 6 11v5l-1.29 1.29A1 1 0 006 19h12a1 1 0 00.71-1.71L18 16z"/>
+      </svg>
+    </button>
+  </div>
+  <div class="container">
+    <a href="index.html" class="back-link">← Back</a>
+    <h2>Add New Customer</h2>
+    <form action="save_customer.php" method="POST" enctype="multipart/form-data">
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" placeholder="Name" required>
+      <label for="phone">Phone</label>
+      <input type="tel" name="phone" id="phone" placeholder="Phone" required pattern="[0-9]{10}" maxlength="10" style="padding:12px;border-radius:8px;border:1px solid #ccc;font-size:15px;font-family:'Poppins',sans-serif;">
+      <label for="address">Address</label>
+      <input type="text" name="address" id="address" placeholder="Address" required>
+      <!-- <label for="photo">Photo (optional)</label>
+      <input type="file" name="photo" id="photo" accept="image/*"> -->
+      <button type="submit" class="button">Save</button>
+    </form>
+  </div>
+</body>
+</html>
